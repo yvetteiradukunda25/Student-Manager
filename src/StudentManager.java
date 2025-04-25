@@ -1,15 +1,15 @@
 import java.util.*;
 
 public class StudentManager {
- private Map<Integer, String> students;
+ private static Map<Integer, String> students;
 
     public StudentManager() {
-        this.students = new HashMap<>();
+        students = new HashMap<>();
     }
     //Adding student records by student ID as key, student name as value
     // with exception handling to handle invalid inputs:
 
-    public static void addStudent(Map<Integer, String> students, int studentId, String studentName) {
+    public static void addStudent(int studentId, String studentName) {
   // Handle invalid inputs
   if (studentId <= 0 || studentName == null || studentName.isEmpty()) {
    throw new IllegalArgumentException( "Invalid Inputs! Please enter positive ID and Enter the name"); // Indicate failure
@@ -80,7 +80,7 @@ Map<Integer, String> sortStudentsByID() {
         return StudentName;
     }
     // Finding the student with the lowest ID.
-    public String studentWithLowestName() {
+    public String studentWithLowestId() {
         if (students == null) {
             throw new NullPointerException("Map is Null!");
         }

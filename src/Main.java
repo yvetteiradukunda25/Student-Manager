@@ -1,36 +1,38 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.*;
+
 public class Main {
     public static void main(String[] args) {
 
-        Map<Integer, String> studentsMap = new HashMap<>();
+        StudentManager manager = new StudentManager();
         try {
-            studentsMap.put(4, "John");
-            studentsMap.put(2, "Jane");
-            studentsMap.put(3, "Bob");
-            studentsMap.put(1, "Mary");
+            manager.addStudent(31, "John");
+            manager.addStudent(35, "Bella");
+            manager.addStudent(32, "Louise");
+            manager.addStudent(34, "Anaclet");
+            manager.addStudent(33, "Remy");
 
+            System.out.println("Sorted Students: " + manager.sortStudentsByID());
+            System.out.println("\nSearch student with Id 32: " + manager.searchStudentByID(32));
+            System.out.println("\nSearch student with Id 34: " + manager.searchStudentByID(34));
 
-            System.out.println("Sorted by ID" + studentsMap);
-        }catch (IllegalArgumentException e){
-            System.out.println("Illegal message displayed:" + e.getMessage());
+            manager.removeStudentByID(31);
+            System.out.println("Sorted students after removal:" + manager.sortStudentsByID());
+            System.out.println("Highest ID student" + manager.studentWithHighestID());
+            System.out.println("Lowest ID student:" + manager.studentWithLowestId());
+
+            }catch (IllegalArgumentException e){
+            System.err.println("Illegal message displayed:" + e.getMessage());
+        }catch (NullPointerException e){
+            System.err.println("Null message displayed:" + e.getMessage());
+        }catch (NoSuchElementException e){
+            System.err.println("No student with ID 32 found");
+
         }
 
-        Map<Integer, String> sortedStudentsMap = new TreeMap<>(studentsMap);
-        System.out.println("Sorted Students: " + sortedStudentsMap);
+
 
 
         //sort by value
-        List<Map.Entry<Integer, String>> list = new ArrayList<>(studentsMap.entrySet());
-        list.sort(Map.Entry.comparingByValue());
-        Map<Integer, String> sortedByValueMap = new LinkedHashMap<>();
-        for (Map.Entry<Integer, String> entry : list) {
-            sortedByValueMap.put(entry.getKey(), entry.getValue());
-        }
-        System.out.println("Sorted Student Map by Value: " + sortedByValueMap);
+
     }
 }
