@@ -6,14 +6,19 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 public class Main {
     public static void main(String[] args) {
+
         Map<Integer, String> studentsMap = new HashMap<>();
-        studentsMap.put(4, "John");
-        studentsMap.put(2, "Jane");
-        studentsMap.put(3, "Bob");
-        studentsMap.put(1, "Mary");
+        try {
+            studentsMap.put(4, "John");
+            studentsMap.put(2, "Jane");
+            studentsMap.put(3, "Bob");
+            studentsMap.put(1, "Mary");
 
 
-        System.out.println("unsorted students: " + studentsMap);
+            System.out.println("Sorted by ID" + studentsMap);
+        }catch (IllegalArgumentException e){
+            System.out.println("Illegal message displayed:" + e.getMessage());
+        }
 
         Map<Integer, String> sortedStudentsMap = new TreeMap<>(studentsMap);
         System.out.println("Sorted Students: " + sortedStudentsMap);
